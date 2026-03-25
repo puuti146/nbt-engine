@@ -1,26 +1,27 @@
+#include "Core.h"
 #include "DxLib.h"
 
-// プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    ChangeWindowMode(TRUE);
+    auto& app = Core::GetInstance();
 
-    // ＤＸライブラリ初期化処理
-    if (DxLib_Init() == -1)
+    if (!app.Init())
     {
-        // エラーが起きたら直ちに終了
         return -1;
     }
 
-    // 点を打つ
-    DrawPixel(320, 240, GetColor(255, 255, 255));
+    // メインループ
+    while (app.Update())
+    {
+        // ここにゲームの処理を書く
+        DrawPixel(320, 240, GetColor(255, 255, 255));
 
-    // キー入力待ち
-    WaitKey();
+        if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+        {
+            break;
+        }
+    }
 
-    // ＤＸライブラリ使用の終了処理
-    DxLib_End();
-
-    // ソフトの終了 
+    app.Finalize();
     return 0;
 }
