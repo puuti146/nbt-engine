@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="nbt-engine.vcxproj" Id="1d06007d-0d33-4912-969f-b88ac77a7de3" />
+</Solution>
