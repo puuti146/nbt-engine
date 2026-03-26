@@ -1,22 +1,13 @@
-#include "InputManager.h"
+#include "Input.h"
 #include "DxLib.h"
 
-bool InputManager::Init()
+Input& Input::GetInstance()
 {
-    for (auto& i : NowInput)
-    {
-        i = 0;
-    }
-
-    for (auto& j : PrevInput)
-    {
-        j = 0;
-    }
-
-    return false;
+    static Input instance;
+    return instance;
 }
 
-void InputManager::Update()
+void Input::Update()
 {
     memcpy(PrevInput, NowInput, sizeof(PrevInput));
 

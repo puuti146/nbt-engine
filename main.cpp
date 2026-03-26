@@ -1,5 +1,5 @@
 #include "Core.h"
-#include "InputManager.h"
+#include "Input.h"
 #include "DxLib.h"
 
 int WINAPI WinMain(
@@ -21,13 +21,16 @@ int WINAPI WinMain(
         return -1;
     }
 
+    auto& input = Input::GetInstance();
 
 
     while (app.Update())
     {
+        input.Update();
+
         DrawPixel(320, 240, GetColor(255, 255, 255));
 
-        if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+        if (input.Cancel.Down)
         {
             break;
         }

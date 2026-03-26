@@ -7,19 +7,13 @@ struct InputData
     bool Up;
 };
 
-class InputManager
+class Input
 {
 public:
-    InputManager(const InputManager&) = delete;
-    void operator=(const InputManager&) = delete;
+    Input(const Input&) = delete;
+    void operator=(const Input&) = delete;
 
-    static InputManager& GetInstance()
-    {
-        static InputManager instance;
-        return instance;
-    }
-
-    bool Init();
+    static Input& GetInstance();
 
     void Update();
 
@@ -32,7 +26,7 @@ public:
     InputData Shift;
 
 private:
-    InputManager() = default;
+    Input() = default;
 
     char NowInput[256];
     char PrevInput[256];
